@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  db_auth:
+    restart: unless-stopped
+    container_name: postgres_auth
+    image: postgres:14
+    expose:
+      - ${POSTGRES_PORT}
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    volumes:
+      - db_auth:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+
+
+
+volumes:
+  db_auth:
+
+
