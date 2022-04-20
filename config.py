@@ -1,8 +1,18 @@
+import os
 import databases
 import sqlalchemy
 
+from dotenv import load_dotenv
+
+load_dotenv('.env')
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
+DB_PATH = "sqlite:///sqlite.db"
+
 metadata = sqlalchemy.MetaData()
-database = databases.Database("sqlite:///sqlite.db")
+database = databases.Database(DB_PATH)
+engine = sqlalchemy.create_engine(DB_PATH)
+
 
 # from typing import Any, Dict, Optional
 #
